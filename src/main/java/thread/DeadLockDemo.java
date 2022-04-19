@@ -12,8 +12,8 @@ public class DeadLockDemo {
     private static Object lockB = new Object();
 
     private static void startThreadA() {
-        Thread aThread = new Thread() {
 
+        Thread aThread = new Thread() {
             @Override
             public void run() {
                 synchronized (lockA) {
