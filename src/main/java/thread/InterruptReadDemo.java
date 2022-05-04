@@ -1,0 +1,40 @@
+package thread;
+
+import java.io.IOException;
+
+/**
+ * 调用流的close方法无法中断read()调用
+ * @Author: Jialong Fu
+ * @Date: 2022/4/29 10:57
+ */
+public class InterruptReadDemo {
+    private static class A extends Thread {
+        @Override
+        public void run() {
+            while (!Thread.currentThread().isInterrupted()) {
+                try {
+                    System.out.println(System.in.read());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            System.out.println("exit");
+        }
+
+        public void cancel() {
+            try {
+                System.in.close();
+            } catch (IOException e) {
+            }
+            interrupt();
+        }
+    }
+
+    public static void main(String[] args) throws InterruptedException {
+        A t = new A();
+        t.start();
+        Thread.sleep(1000);
+
+        t.cancel();
+    }
+}

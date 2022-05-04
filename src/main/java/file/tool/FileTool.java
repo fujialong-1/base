@@ -33,10 +33,31 @@ public class FileTool {
         }
     }
 
+    /**
+     * 重载方法
+     * @param file
+     * @param keyword
+     */
+    public static void findFileOrDirByName(File file, String keyword) {
+        File[] files = file.listFiles();
+        if (files == null) {
+            return;
+        }
+        for (File fileItem : files) {
+            String fileName = fileItem.getName();
+            if (Pattern.matches(".*" + keyword + ".*", fileName)) {
+                System.out.println(fileItem.getAbsolutePath());
+            }
+            if (fileItem.isDirectory()) {
+                findFileOrDirByName(new File(fileItem.getAbsolutePath()), keyword);
+            }
+        }
+    }
+
     public static void main(String[] args) {
         List<String> result = new ArrayList<>();
         File file = new File("E:/大论文");
-        FileTool.findFileOrDirByName(file, "报告", result);
+        FileTool.findFileOrDirByName(file, "报告");
         for (String s : result) {
             System.out.println(s);
         }
