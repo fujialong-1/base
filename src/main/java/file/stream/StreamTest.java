@@ -21,7 +21,7 @@ public class StreamTest {
      * 将字符写入磁盘文件
      * @throws IOException
      */
-    public void writeTest() throws IOException {
+    public static void writeTest() throws IOException {
 
         OutputStream outputStream = new FileOutputStream("hello.txt");
         try {
@@ -38,7 +38,7 @@ public class StreamTest {
      * 将磁盘文件读到内存
      * @throws IOException
      */
-    public void readTest() throws IOException {
+    public static void readTest() throws IOException {
 
         InputStream inputStream = new FileInputStream("hello.txt");
         try {
@@ -55,7 +55,7 @@ public class StreamTest {
      * 文件复制
      * @throws IOException
      */
-    public void copyFile(File source, File desc) throws IOException {
+    public static void copyFile(File source, File desc) throws IOException {
 
         InputStream inputStream = null;
         OutputStream outputStream = null;

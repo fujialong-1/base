@@ -10,8 +10,9 @@ public class FileTest {
 
     public static void main(String[] args) {
 
+        // F:\program-life\project\base
+        // System.out.println(System.getProperty("user.dir"));
+
     }
-
-
 
 }
