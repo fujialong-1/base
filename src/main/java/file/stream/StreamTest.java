@@ -53,26 +53,18 @@ public class StreamTest {
 
     /**
      * 文件复制
+     * try-with-resources
      * @throws IOException
      */
     public static void copyFile(File source, File desc) throws IOException {
-
-        InputStream inputStream = null;
-        OutputStream outputStream = null;
-
-        try {
-            inputStream = new FileInputStream(source);
-            outputStream = new FileOutputStream(desc);
+        try (InputStream in = new FileInputStream(source);
+             OutputStream out = new FileOutputStream(desc)) {
             byte[] buf = new byte[1024];
             int bytesRead;
             // 流似乎是连续的
-            while ((bytesRead = inputStream.read(buf)) > 0) {
-                outputStream.write(buf, 0, bytesRead);
+            while ((bytesRead = in.read(buf)) > 0) {
+                out.write(buf, 0, bytesRead);
             }
-        } finally {
-            outputStream.close();
-            inputStream.close();
         }
     }
-
 }

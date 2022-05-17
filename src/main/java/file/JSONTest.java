@@ -30,6 +30,6 @@ public class JSONTest {
                 "score" : 99.0
         }*/
 
-    }
 
+    }
 }
